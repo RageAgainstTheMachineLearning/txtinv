@@ -2,7 +2,7 @@ from collections import defaultdict
 import time
 import torch
 
-from plot import display_reconstruction
+from txtinv.plot import display_reconstruction
 
 
 class GradientReconstructor():

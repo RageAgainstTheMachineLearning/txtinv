@@ -1,0 +1,23 @@
+[project]
+name = "txtinv"
+version = "0.1.0"
+description = "Reconstruction attacks for text classification tasks"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "datasets>=3.6.0",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.1",
+    "torch>=2.7.1",
+    "transformers>=4.52.4",
+]
+
+[project.scripts]
+txtinv = "txtinv.txtinv:main"
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

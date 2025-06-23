@@ -9,7 +9,7 @@ def options():
         description='Reconstruct text from gradients.')
 
     # Central:
-    parser.add_argument('--model', default='bert-tiny',
+    parser.add_argument('--model', default='bert_tiny',
                         type=str, help='BERT model.')
     parser.add_argument('--dataset', default='BC2GM', type=str)
     parser.add_argument('--strategy', default='conservative',

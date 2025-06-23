@@ -3,12 +3,12 @@ import torch
 import numpy as np
 
 # ------ Local imports ------ #
-from data import load_data, num_classes
-from model import get_bert_model, get_bert_tokenizer, tokenize_and_align_labels, get_loss_fn
-from options import options
-from plot import display_batch, display_reconstruction
-from reconstructor import GradientReconstructor
-from utils import system_startup
+from txtinv.data import load_data, num_classes
+from txtinv.model import get_bert_model, get_bert_tokenizer, tokenize_and_align_labels, get_loss_fn
+from txtinv.options import options
+from txtinv.plot import display_batch, display_reconstruction
+from txtinv.reconstructor import GradientReconstructor
+from txtinv.utils import system_startup
 
 
 def extract_ground_truth(dataset, embedding_matrix, batch_size, setup):
@@ -104,7 +104,7 @@ def extract_gradient(
     return gt_gradient
 
 
-if __name__ == "__main__":
+def main():
     args = options().parse_args()
 
     setup = system_startup()
@@ -120,6 +120,8 @@ if __name__ == "__main__":
     num_labels = num_classes(args.dataset)
 
     model = get_bert_model(args.model, num_labels)
+    if not model:
+        raise ValueError(f"Model {args.model} not found or not supported.")
     model.to(**setup)
     model.eval()
 
@@ -173,3 +175,6 @@ if __name__ == "__main__":
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"Elapsed time: {elapsed_time:.2f} seconds.")
+
+if __name__ == "__main__":
+    main()
